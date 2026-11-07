@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Like a Miracle ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 35px 18px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            background: radial-gradient(ellipse at center,
+                    #4b1022,
+                    #210711 55%,
+                    #090307);
+            color: #f9e8db;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 12px;
+            border: 1px solid rgba(213, 171, 91, .4);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            color: #e9bd63;
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font: normal clamp(40px, 7vw, 72px) 'Great Vibes', cursive;
+            color: #e7b75d;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #e9b0ae;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .video-frame {
+            position: relative;
+            width: min(720px, 92vw);
+            padding: 8px;
+            border: 1px solid #bd9149;
+            border-radius: 8px;
+            background: rgba(30, 5, 15, .7);
+            box-shadow: 0 0 45px rgba(190, 44, 80, .16);
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #090307;
+            border-radius: 4px;
+        }
+
+        .video-caption {
+            color: #e9bd63;
+            font: 30px 'Great Vibes', cursive;
+            margin-top: 25px;
+        }
+
+        .message {
+            max-width: 580px;
+            color: #e8c9c9;
+            font-size: 13px;
+            line-height: 2;
+            margin-top: 14px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: 1px solid #c99b4c;
+            border-radius: 30px;
+            color: #eac16e;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .back-button:hover {
+            background: #c99b4c;
+            color: #200711;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -25px;
+            z-index: -1;
+            color: #d94367;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .eyebrow {
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 11px;
+            }
+
+            .video-caption {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p class="eyebrow">A LITTLE MIRACLE CALLED YOU</p>
+
+        <h1>Like a Miracle, How You Came Into My Life</h1>
+
+        <p class="subtitle">
+            Some beautiful things happen when we least expect them. ❤️
+        </p>
+    </header>
+
+    <main>
+        <div class="video-frame">
+            <video id="loveVideo" controls autoplay muted playsinline preload="metadata">
+                <source src="../image/recap.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+        </div>
+
+        <p class="video-caption">You are my unexpected miracle ❤️</p>
+
+        <p class="message">
+            Out of all the people in this world, somehow our paths crossed.
+            And little by little, you became someone so special to me.
+            If I could replay one beautiful chapter of my life,
+            I would choose the moments that brought me closer to you.
+        </p>
+
+        <a href="../html/forever.html" class="back-button">
+            Something waiting for you
+        </a>
+    </main>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("span");
+            heart.className = "heart";
+            heart.textContent = Math.random() > .5 ? "♥" : "✦";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (12 + Math.random() * 15) + "px";
+            heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 12000);
+        }
+
+        setInterval(createHeart, 700);
+    </script>
+
+</body>
+
+</html>

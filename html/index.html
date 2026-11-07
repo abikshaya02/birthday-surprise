@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Cupid's Birthday Wish</title>
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Jost:wght@300;400&family=Tiro+Devanagari+Hindi&display=swap">
+
+  <link rel="stylesheet" href="../css/cupid.css">
+</head>
+
+<body>
+
+
+  <div class="stage" id="stage">
+
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <div class="vignette"></div>
+    <div class="frame"></div>
+
+    <div class="heart-wrap" id="heart-wrap">
+      <i class="pr"></i>
+      <i class="pr"></i>
+
+      <svg viewBox="0 0 100 90" aria-label="A beating heart" role="img">
+        <defs>
+          <radialGradient id="hg" cx=".35" cy=".28" r=".95">
+            <stop offset="0" stop-color="#ff8aa0" />
+            <stop offset=".42" stop-color="#e0234e" />
+            <stop offset="1" stop-color="#6e0420" />
+          </radialGradient>
+
+          <linearGradient id="gloss" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".7" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+
+          <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff3c9" />
+            <stop offset="1" stop-color="#e2a437" />
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M50 88 C20 62 4 44 4 27 C4 13 15 4 27 4 C37 4 46 10 50 18 C54 10 63 4 73 4 C85 4 96 13 96 27 C96 44 80 62 50 88 Z"
+          fill="url(#hg)" stroke="url(#rim)" stroke-width="1.2" stroke-linejoin="round" />
+
+        <path d="M50 84 C22 60 8 43 8 27 C8 15 17 8 27 8 C36 8 45 14 50 22" fill="none" stroke="#fff"
+          stroke-opacity=".2" stroke-width="1.2" stroke-linecap="round" />
+
+        <path d="M14 26 C13 17 20 11 28 12 C22 14 18 19 18 27 Z" fill="url(#gloss)" />
+
+        <ellipse cx="26" cy="19" rx="7" ry="3.6" fill="#fff" opacity=".45" transform="rotate(-30 26 19)" />
+
+        <ellipse cx="77" cy="22" rx="3.2" ry="1.8" fill="#fff" opacity=".25" transform="rotate(30 77 22)" />
+
+        <path class="tw" d="M0 -5 L1.4 -1.4 L5 0 L1.4 1.4 L0 5 L-1.4 1.4 L-5 0 L-1.4 -1.4 Z"
+          transform="translate(-8 16)" fill="#ffe9a8" />
+
+        <path class="tw" style="animation-delay:.6s" d="M0 -5 L1.4 -1.4 L5 0 L1.4 1.4 L0 5 L-1.4 1.4 L-5 0 L-1.4 -1.4 Z"
+          transform="translate(108 8)" fill="#ffe9a8" />
+
+        <path class="tw" style="animation-delay:1.2s"
+          d="M0 -4 L1.2 -1.2 L4 0 L1.2 1.2 L0 4 L-1.2 1.2 L-4 0 L-1.2 -1.2 Z" transform="translate(104 66)"
+          fill="#fff6ea" />
+      </svg>
+    </div>
+
+    <div class="rays" id="rays"></div>
+    <div class="ring" id="ring"></div>
+    <div class="ring r2" id="ring2"></div>
+
+    <div class="cupid float" id="cupid" aria-hidden="true">
+      <div class="cupid-fly" id="cupid-fly">
+        <img class="cupid-img" id="cupid-img" alt="" draggable="false" src="../image/cupid.png">
+      </div>
+    </div>
+
+    <svg class="arrow" id="arrow" viewBox="0 0 140 30" aria-hidden="true">
+      <defs>
+        <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e2a437" />
+          <stop offset="1" stop-color="#fff3c9" />
+        </linearGradient>
+      </defs>
+
+      <path d="M10 13.6 L110 13.6 L110 16.4 L10 16.4 Z" fill="url(#shaft)" />
+
+      <path d="M0 4 L16 15 L0 26 L7 15 Z" fill="#fff3d6" />
+
+      <path d="M12 5 L27 15 L12 25 L18 15 Z" fill="#ffe2a8" />
+
+      <path d="M104 7 L131 15 L104 23 L110 15 Z" fill="url(#shaft)" stroke="#fff6ea" stroke-width=".8"
+        stroke-linejoin="round" />
+    </svg>
+
+    <canvas id="fx" aria-hidden="true"></canvas>
+    <div class="flash" id="flash"></div>
+
+    <div class="wish" id="wish" hidden>
+      <p class="eyebrow" id="w-eyebrow"></p>
+
+      <h1 aria-label="Happy Birthday">
+        <span class="foil w1">Happy</span>
+        <span class="foil w2">Birthday</span>
+      </h1>
+
+      <div class="sep" aria-hidden="true">
+        <i></i>
+        <b></b>
+        <i></i>
+      </div>
+
+      <p class="name" id="w-name"></p>
+      <p class="line" id="w-line"></p>
+      <p class="hindi" id="w-hindi" lang="en">I Love You ❤️</p>
+    </div>
+
+    <!-- MORE SURPRISES: opens your surprise letter page -->
+    <button class="replay" id="replay" type="button" hidden onclick="window.location.href='letter.html'">
+      More Surprises
+    </button>
+
+  </div>
+
+  <script src="../js/cupid.js"></script>
+
+</body>
+
+</html>

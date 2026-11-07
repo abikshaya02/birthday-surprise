@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise for You ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 18px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            background: radial-gradient(ellipse at 50% 35%, #4b1022, #210711 48%, #090307);
+            color: #f9e8db;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 12px;
+            border: 1px solid rgba(213, 171, 91, .4);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .intro {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            color: #e9bd63;
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font: normal clamp(44px, 8vw, 68px) 'Great Vibes', cursive;
+            color: #e7b75d;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            color: #e9b0ae;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* ENVELOPE POSITION */
+
+        .envelope-area {
+            width: min(340px, 88vw);
+            text-align: center;
+            perspective: 1000px;
+            margin-top: 150px;
+            margin-bottom: 30px;
+        }
+
+        .envelope {
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            height: 205px;
+            cursor: pointer;
+            filter: drop-shadow(0 18px 25px rgba(0, 0, 0, .4));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .envelope:focus-visible {
+            outline: 2px solid #f2c96f;
+            outline-offset: 8px;
+        }
+
+        /* BACK OF ENVELOPE */
+
+        .envelope-back {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: #74162e;
+            border: 1px solid #c47a53;
+            border-radius: 5px;
+        }
+
+        /* CREAM LETTER PREVIEW */
+
+        .letter-preview {
+            position: absolute;
+            z-index: 2;
+            left: 7%;
+            width: 86%;
+            height: 88%;
+            bottom: 4px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            background: #fff0d7;
+            color: #68172b;
+            border-radius: 3px;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(0);
+
+            transition:
+                transform 1s ease,
+                opacity .5s ease,
+                visibility .5s ease;
+        }
+
+        .preview-heart {
+            font-size: 27px;
+            margin-bottom: 10px;
+            color: #a91e40;
+        }
+
+        .letter-preview span {
+            font: 28px 'Great Vibes', cursive;
+        }
+
+        /* RED FRONT POCKET — REMAINS IN FRONT */
+
+        .envelope-front {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            background: #a32243;
+
+            clip-path: polygon(0 0,
+                    50% 57%,
+                    100% 0,
+                    100% 100%,
+                    0 100%);
+
+            border-radius: 4px;
+        }
+
+        /* TOP FLAP */
+
+        .envelope-flap {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            background: linear-gradient(145deg, #bd3151, #82172f);
+            clip-path: polygon(0 0, 100% 0, 50% 58%);
+            transform-origin: top center;
+            transition: transform .85s ease;
+        }
+
+        /* GOLD HEART SEAL */
+
+        .seal {
+            position: absolute;
+            z-index: 6;
+            left: 50%;
+            top: 48%;
+            transform: translate(-50%, -50%);
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 35% 30%, #f5d78b, #b68130);
+            color: #74162e;
+            font-size: 22px;
+            box-shadow: 0 2px 10px #400713;
+            transition: opacity .3s ease;
+        }
+
+        .open-label {
+            position: absolute;
+            z-index: 7;
+            left: 0;
+            right: 0;
+            bottom: 18px;
+            color: #ffe5b3;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 1px 4px #5c071a;
+        }
+
+        /* CLICK INSTRUCTION */
+
+        .hint {
+            margin-top: 26px;
+            color: #e9c3ba;
+            font-size: 11px;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        /* OPEN ENVELOPE */
+
+        .envelope.open {
+            animation: none;
+            cursor: default;
+        }
+
+        /* Top flap opens upward */
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Hide seal and OPEN ME */
+        .envelope.open .seal,
+        .envelope.open .open-label {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Letter comes out, but stays behind the red front pocket */
+        .envelope.open .letter-preview {
+            z-index: 2;
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(-100px);
+        }
+
+        /* FULL LETTER */
+
+        .letter-wrap {
+            display: none;
+            width: min(650px, 92vw);
+            margin-top: 0;
+        }
+
+        .letter-wrap.revealed {
+            display: block;
+            animation: letterAppear 1s ease both;
+        }
+
+        .letter-paper {
+            padding: clamp(25px, 6vw, 48px);
+            background: linear-gradient(#fff7e7, #faead5);
+            color: #542033;
+            border: 1px solid #d3ad6d;
+            border-radius: 3px;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, .35);
+            text-align: left;
+        }
+
+        .letter-paper::before {
+            content: "♥";
+            display: block;
+            text-align: center;
+            color: #ad3452;
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .letter-heading {
+            text-align: center;
+            font: clamp(35px, 7vw, 49px) 'Great Vibes', cursive;
+            color: #8f203b;
+            margin-bottom: 6px;
+        }
+
+        .letter-subheading {
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #a57b43;
+            margin-bottom: 25px;
+        }
+
+        .letter-body {
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .letter-body p {
+            margin-bottom: 17px;
+        }
+
+        .signature {
+            margin-top: 24px;
+            text-align: right;
+            font: 34px 'Great Vibes', cursive;
+            color: #a52646;
+        }
+
+        /* BACK BUTTON */
+
+        .back-button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 12px 24px;
+            border: 1px solid #c99b4c;
+            border-radius: 30px;
+            color: #eac16e;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .back-button:hover {
+            background: #c99b4c;
+            color: #200711;
+        }
+
+        /* FLOATING HEARTS */
+
+        .floating-heart {
+            position: fixed;
+            top: -30px;
+            z-index: 0;
+            pointer-events: none;
+            color: #d94367;
+            animation: fall linear forwards;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .55;
+            }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes letterAppear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro {
+                margin-bottom: 20px;
+            }
+
+            .envelope {
+                height: 175px;
+            }
+
+            .letter-body {
+                font-size: 12px;
+            }
+
+            .eyebrow {
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="intro">
+        <div class="eyebrow">A LITTLE SECRET FOR YOU</div>
+        <h1>Just for You</h1>
+        <p class="subtitle">Something from my heart to yours ❤️</p>
+    </header>
+
+    <main>
+        <div class="envelope-area">
+
+            <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open your surprise letter"
+                aria-expanded="false">
+
+                <div class="envelope-back"></div>
+
+                <div class="letter-preview">
+                    <div class="preview-heart">♥</div>
+                    <span>A letter for you</span>
+                </div>
+
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                <div class="seal">♥</div>
+                <div class="open-label">OPEN ME ♥</div>
+            </div>
+
+            <p class="hint" id="hint">
+                ✨ Tap the envelope to discover your surprise ✨
+            </p>
+
+        </div>
+
+        <section class="letter-wrap" id="letterWrap" aria-hidden="true">
+            <article class="letter-paper">
+
+                <h2 class="letter-heading">To My Love</h2>
+                <p class="letter-subheading">A LETTER WRITTEN WITH LOVE</p>
+
+                <div class="letter-body">
+                    <p>Habibi, ❤️</p>
+
+                    <p>
+                        Happy Birthday to the person who holds such a
+                        beautiful place in my heart.Today, I wanted to give you a gift, but how can I give you a gift
+                        when you are already the biggest gift God has given me?” ❤️
+                    </p>
+
+                    <p>
+                        You are my favorite thought, my reason to smile
+                        at random moments, and the person who makes even
+                        ordinary days feel extraordinary. Sometimes a
+                        simple message from you is enough to make my
+                        whole day better. You are my Everything bby I love u.
+                    </p>
+
+                    <p>
+                        I know I may not always express my feelings
+                        perfectly, but my love for you lives in all the
+                        little things, Always my heart chooses you again and again.
+                        Because of you, I have realised how deeply a man can love, care for, and cherish someone. Your
+                        love has shown me what it truly means to be loved.” 🥹❤️
+                    </p>
+
+                    <p>
+                        On your birthday, I wish you endless happiness,
+                        courage to follow your dreams, peace in your
+                        heart, and every beautiful thing life can offer.
+                        When life gets difficult, I hope you remember
+                        that you deserve love, kindness, and support.
+                        I wanna see your success . someday if you feel bad means just remember i am always with you like
+                        a shadow only nit time i can't able to be with you but i'm with u in dreams.
+                    </p>
+
+                    <p>
+                        I cannot promise that every day will be perfect,
+                        but I hope we keep creating little memories
+                        together and finding new reasons to fall in love. I've never been good at putting my feelings
+                        into words. I dunno how much deeply i love you but i know one thing without you i feel like
+                        nothing .
+                    </p>
+
+                    <p>
+                        Thank you for being part of my life. You are
+                        precious to me in ways that words will never
+                        completely explain. Today is your birthday,
+                        but having you in my life feels like a gift
+                        to me too. 🥹❤️
+                    </p>
+
+                    <p>
+                        Happy Birthday, my love. May this be the
+                        beginning of another beautiful chapter for you.
+                        Whatever the future brings, I hope it brings
+                        you countless reasons to smile. once again happy birthday my dear bby.
+                    </p>
+
+                    <p>
+                        i love you my dear futur husband. i love you past , today , tomorrow till my last breath .
+                    </p>
+                </div>
+
+                <div class="signature">Forever yours, ❤️</div>
+
+            </article>
+        </section>
+    </main>
+
+    <a href="../html/memories.html" class="back-button">
+        Next surprise waiting for you!
+    </a>
+
+    <script>
+        const envelope = document.getElementById("envelope");
+        const letterWrap = document.getElementById("letterWrap");
+        const hint = document.getElementById("hint");
+
+        let isOpened = false;
+
+        function openLetter() {
+            if (isOpened) return;
+
+            isOpened = true;
+
+            envelope.classList.add("open");
+            envelope.setAttribute("aria-expanded", "true");
+
+            hint.textContent = "❤️ A little message, just for you ❤️";
+
+            setTimeout(() => {
+                letterWrap.classList.add("revealed");
+                letterWrap.setAttribute("aria-hidden", "false");
+
+                setTimeout(() => {
+                    letterWrap.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }, 300);
+            }, 850);
+        }
+
+        envelope.addEventListener("click", openLetter);
+
+        envelope.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openLetter();
+            }
+        });
+
+        function createHeart() {
+            const heart = document.createElement("span");
+
+            heart.className = "floating-heart";
+            heart.textContent = Math.random() > 0.5 ? "♥" : "✦";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (10 + Math.random() * 14) + "px";
+            heart.style.opacity = 0.25 + Math.random() * 0.5;
+            heart.style.animationDuration = (7 + Math.random() * 6) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 14000);
+        }
+
+        setInterval(createHeart, 650);
+    </script>
+
+</body>
+
+</html>

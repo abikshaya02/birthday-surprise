@@ -1,0 +1,1390 @@
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #000;
+    color: white;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   VIDEO BACKGROUND - FIRST PAGE
+===================================================== */
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    z-index: 0;
+
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =====================================================
+   DARK OVERLAY
+===================================================== */
+
+.dark-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(5, 0, 15, 0.20);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   MAIN SCREEN
+===================================================== */
+
+.screen {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 20px;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+    text-align: center;
+
+    position: relative;
+
+    z-index: 10;
+
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   SMALL TEXT
+===================================================== */
+
+.eyebrow {
+
+    position: relative;
+
+    z-index: 20;
+
+    font-size: 18px;
+
+    color: #fff;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.9),
+        0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =====================================================
+   MAIN TITLE
+===================================================== */
+
+h1 {
+
+    position: relative;
+
+    z-index: 20;
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(70px, 10vw, 130px);
+
+    line-height: 0.9;
+
+    color: white;
+
+    text-shadow:
+
+        0 0 5px #ffffff,
+
+        0 0 12px #ff526f,
+
+        0 0 28px #ff315f,
+
+        0 0 55px #ff174f,
+
+        0 0 80px rgba(255, 23, 79, 0.8);
+}
+
+
+/* =====================================================
+   LOVE TITLE
+===================================================== */
+
+h2 {
+
+    position: relative;
+
+    z-index: 20;
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(45px, 6vw, 75px);
+
+    color: #ff789e;
+
+    margin-top: 20px;
+
+    text-shadow:
+
+        0 0 8px #ff174f,
+
+        0 0 20px #ff174f,
+
+        0 0 40px rgba(255, 23, 79, 0.8);
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.subtitle {
+
+    position: relative;
+
+    z-index: 20;
+
+    margin-top: 25px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: white;
+
+    text-shadow:
+
+        0 2px 6px rgba(0, 0, 0, 0.9),
+
+        0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.glow-btn {
+
+    position: relative;
+
+    z-index: 30;
+
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 15px 35px;
+
+    min-width: 270px;
+
+    border-radius: 50px;
+
+    border: 2px solid #ff9aae;
+
+    background:
+        linear-gradient(90deg,
+            #df2858,
+            #ff4f7d);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    box-shadow:
+
+        0 0 15px #ff174f,
+
+        0 0 35px rgba(255, 23, 79, 0.7),
+
+        0 0 60px rgba(255, 23, 79, 0.3);
+
+    transition: all 0.3s ease;
+}
+
+.glow-btn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+
+        0 0 25px #ff174f,
+
+        0 0 60px rgba(255, 23, 79, 0.9),
+
+        0 0 90px rgba(255, 23, 79, 0.4);
+}
+
+
+/* =====================================================
+   FIRST PAGE FLOATING HEARTS
+===================================================== */
+
+.floating-hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    overflow: hidden;
+}
+
+.heart {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color: #ff4778;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    z-index: 51;
+
+    text-shadow:
+
+        0 0 5px #ff174f,
+
+        0 0 12px #ff174f,
+
+        0 0 25px #ff174f,
+
+        0 0 40px rgba(255, 23, 79, 0.8);
+
+    animation:
+        floatHeart 7s linear forwards;
+}
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0) translateX(0) rotate(0deg) scale(0.5);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    30% {
+
+        transform:
+            translateY(-30vh) translateX(25px) rotate(15deg) scale(1);
+    }
+
+    55% {
+
+        transform:
+            translateY(-60vh) translateX(-30px) rotate(-15deg) scale(1.2);
+    }
+
+    80% {
+
+        transform:
+            translateY(-85vh) translateX(30px) rotate(20deg) scale(0.9);
+
+        opacity: 0.8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh) translateX(-20px) rotate(360deg) scale(0.5);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MEMORIES PAGE
+===================================================== */
+
+.memories-body {
+
+    margin: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    font-family: "Poppins", sans-serif;
+
+    background: #100107;
+
+    color: white;
+}
+
+
+/* =====================================================
+   MEMORIES BACKGROUND
+===================================================== */
+
+.memories-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        radial-gradient(circle at center,
+            rgba(100, 0, 30, 0.35),
+            rgba(15, 0, 7, 0.95)),
+
+        url("../image/memories-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    z-index: -3;
+}
+
+
+/* =====================================================
+   MEMORIES DARK OVERLAY
+===================================================== */
+
+.memories-body .dark-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(rgba(20, 0, 10, 0.25),
+            rgba(10, 0, 5, 0.65));
+
+    z-index: -2;
+}
+
+
+/* =====================================================
+   MAIN MEMORIES PAGE
+===================================================== */
+
+.memories-page {
+
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   MEMORIES HEADER
+===================================================== */
+
+.memories-header {
+
+    text-align: center;
+
+    margin-bottom: 15px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+.memories-header h1 {
+
+    margin: 0;
+
+    font-family:
+        "Dancing Script",
+        cursive;
+
+    font-size:
+        clamp(55px, 6vw, 85px);
+
+    color: white;
+
+    text-shadow:
+
+        0 0 5px white,
+
+        0 0 15px #ff174f,
+
+        0 0 35px #ff174f,
+
+        0 0 70px #ff174f;
+}
+
+
+.camera {
+
+    font-family: sans-serif;
+
+    font-size: 55px;
+
+    margin-left: 10px;
+}
+
+
+.memories-header p {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    color: white;
+
+    text-shadow:
+        0 2px 8px black;
+}
+
+
+/* =====================================================
+   MEMORY SECTION
+===================================================== */
+
+.memory-section {
+
+    width: min(1250px, 95vw);
+
+    height: 430px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    isolation: isolate;
+}
+
+
+/* =====================================================
+   GLOWING CIRCLE
+===================================================== */
+
+.memory-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 620px;
+
+    height: 620px;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(255, 60, 120, 0.75);
+
+    background:
+
+        radial-gradient(circle,
+            rgba(255, 35, 100, 0.10),
+            transparent 65%);
+
+    box-shadow:
+
+        0 0 10px rgba(255, 40, 100, 0.9),
+
+        0 0 30px rgba(255, 40, 100, 0.65),
+
+        0 0 70px rgba(255, 20, 80, 0.35),
+
+        inset 0 0 40px rgba(255, 30, 90, 0.15);
+
+    animation:
+        memoryCircleGlow 3s ease-in-out infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+@keyframes memoryCircleGlow {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%) scale(0.97);
+
+        opacity: 0.65;
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%) scale(1.04);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   CAROUSEL
+===================================================== */
+
+.carousel {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    height: 360px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    perspective: 1200px;
+}
+
+
+/* =====================================================
+   MEMORY CARDS
+===================================================== */
+
+.memory-card {
+
+    position: absolute;
+
+    width: 230px;
+
+    height: 310px;
+
+    padding: 10px;
+
+    border-radius: 18px;
+
+    background:
+
+        linear-gradient(145deg,
+            #fff8f9,
+            #f3dce3);
+
+    box-shadow:
+
+        0 15px 40px rgba(0, 0, 0, 0.65),
+
+        0 0 18px rgba(255, 40, 100, 0.25);
+
+    transition:
+
+        all 0.6s cubic-bezier(.22, .61, .36, 1);
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   CARD POSITIONS
+===================================================== */
+
+.card-1 {
+
+    transform:
+        translateX(-440px) rotateY(18deg) rotateZ(-7deg) scale(0.82);
+
+    opacity: 0.82;
+
+    z-index: 1;
+}
+
+
+.card-2 {
+
+    transform:
+        translateX(-225px) rotateY(10deg) rotateZ(-4deg) scale(0.91);
+
+    z-index: 2;
+}
+
+
+.card-3 {
+
+    transform:
+        translateX(0) rotateY(0) rotateZ(0) scale(1.05);
+
+    z-index: 5;
+
+    box-shadow:
+
+        0 20px 55px rgba(0, 0, 0, 0.7),
+
+        0 0 25px rgba(255, 40, 100, 0.5),
+
+        0 0 55px rgba(255, 20, 80, 0.25);
+}
+
+
+.card-4 {
+
+    transform:
+        translateX(225px) rotateY(-10deg) rotateZ(4deg) scale(0.91);
+
+    z-index: 2;
+}
+
+
+.card-5 {
+
+    transform:
+        translateX(440px) rotateY(-18deg) rotateZ(7deg) scale(0.82);
+
+    opacity: 0.82;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo {
+
+    width: 100%;
+
+    height: 245px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: #ddd;
+}
+
+
+.photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.memory-card:hover .photo img {
+
+    transform:
+        scale(1.06);
+}
+
+
+/* =====================================================
+   CAPTION
+===================================================== */
+
+.caption {
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: #35131d;
+}
+
+
+/* =====================================================
+   ARROWS
+===================================================== */
+
+.carousel-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 54px;
+
+    height: 54px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid #ff4778;
+
+    background:
+        rgba(30, 0, 12, 0.75);
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    box-shadow:
+
+        0 0 12px #ff174f,
+
+        0 0 35px rgba(255, 23, 79, 0.5);
+
+    transition:
+        0.3s ease;
+}
+
+
+.carousel-arrow:hover {
+
+    background: #ff315f;
+
+    transform:
+        translateY(-50%) scale(1.1);
+}
+
+
+.left-arrow {
+
+    left: 15px;
+}
+
+
+.right-arrow {
+
+    right: 15px;
+}
+
+
+/* =====================================================
+   HEART DECORATION
+===================================================== */
+
+.heart-glow {
+
+    position: absolute;
+
+    font-size: 95px;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        2px #ff4778;
+
+    text-shadow:
+
+        0 0 10px #ff174f,
+
+        0 0 30px #ff174f;
+
+    z-index: 0;
+
+    opacity: 0.8;
+
+    animation:
+        heartPulse 2.5s ease-in-out infinite;
+}
+
+
+.heart-left {
+
+    left: 25%;
+
+    top: 70px;
+
+    transform:
+        rotate(-15deg);
+}
+
+
+.heart-right {
+
+    right: 25%;
+
+    top: 70px;
+
+    transform:
+        rotate(15deg);
+}
+
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+
+/* =====================================================
+   DOTS
+===================================================== */
+
+.carousel-dots {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+.dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid white;
+
+    background: transparent;
+
+    transition:
+        0.3s ease;
+}
+
+
+.dot.active {
+
+    background: #ff315f;
+
+    border-color: #ff315f;
+
+    box-shadow:
+
+        0 0 10px #ff174f,
+
+        0 0 20px #ff174f;
+}
+
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
+.next-surprise {
+
+    margin-top: 20px;
+
+    padding:
+        15px 40px;
+
+    border-radius: 50px;
+
+    border:
+        2px solid #ff7395;
+
+    background:
+
+        linear-gradient(90deg,
+            #ff2862,
+            #ff4d80);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    box-shadow:
+
+        0 0 15px #ff174f,
+
+        0 0 35px rgba(255, 23, 79, 0.7);
+
+    transition:
+        0.3s ease;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+.next-surprise:hover {
+
+    transform:
+        scale(1.08);
+
+    box-shadow:
+
+        0 0 25px #ff174f,
+
+        0 0 55px rgba(255, 23, 79, 0.9);
+}
+
+
+/* =====================================================
+   MEMORIES FLOATING HEARTS
+===================================================== */
+
+.memories-body .floating-hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 100;
+}
+
+
+.memories-body .heart {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color: #ff4778;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    z-index: 101;
+
+    text-shadow:
+
+        0 0 5px #ff174f,
+
+        0 0 12px #ff174f,
+
+        0 0 25px #ff174f,
+
+        0 0 40px rgba(255, 23, 79, 0.8);
+
+    animation:
+        memoryFloatHeart 7s linear forwards;
+}
+
+
+@keyframes memoryFloatHeart {
+
+    0% {
+
+        transform:
+            translateY(0) translateX(0) rotate(0deg) scale(0.5);
+
+        opacity: 0;
+    }
+
+    10% {
+
+        opacity: 1;
+    }
+
+    30% {
+
+        transform:
+            translateY(-30vh) translateX(25px) rotate(15deg) scale(1);
+    }
+
+    55% {
+
+        transform:
+            translateY(-60vh) translateX(-30px) rotate(-15deg) scale(1.2);
+    }
+
+    80% {
+
+        transform:
+            translateY(-85vh) translateX(30px) rotate(20deg) scale(0.9);
+
+        opacity: 0.8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh) translateX(-20px) rotate(360deg) scale(0.5);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE - TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .memory-card {
+
+        width: 190px;
+
+        height: 270px;
+    }
+
+
+    .photo {
+
+        height: 205px;
+    }
+
+
+    .card-1 {
+
+        transform:
+            translateX(-270px) rotateZ(-7deg) scale(0.78);
+    }
+
+
+    .card-2 {
+
+        transform:
+            translateX(-140px) rotateZ(-4deg) scale(0.88);
+    }
+
+
+    .card-4 {
+
+        transform:
+            translateX(140px) rotateZ(4deg) scale(0.88);
+    }
+
+
+    .card-5 {
+
+        transform:
+            translateX(270px) rotateZ(7deg) scale(0.78);
+    }
+
+
+    .memory-section::before {
+
+        width: 500px;
+
+        height: 500px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    .memories-header h1 {
+
+        font-size: 48px;
+    }
+
+
+    .camera {
+
+        font-size: 35px;
+    }
+
+
+    .memory-section {
+
+        height: 380px;
+    }
+
+
+    .memory-section::before {
+
+        width: 360px;
+
+        height: 360px;
+    }
+
+
+    .memory-card {
+
+        width: 210px;
+
+        height: 290px;
+    }
+
+
+    .photo {
+
+        height: 220px;
+    }
+
+
+    .card-1,
+    .card-5 {
+
+        display: none;
+    }
+
+
+    .card-2 {
+
+        transform:
+            translateX(-80px) rotateZ(-5deg) scale(0.82);
+    }
+
+
+    .card-3 {
+
+        transform:
+            translateX(0) scale(1);
+    }
+
+
+    .card-4 {
+
+        transform:
+            translateX(80px) rotateZ(5deg) scale(0.82);
+    }
+
+
+    .carousel-arrow {
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 22px;
+    }
+
+
+    .left-arrow {
+
+        left: 5px;
+    }
+
+
+    .right-arrow {
+
+        right: 5px;
+    }
+
+
+    .next-surprise {
+
+        padding:
+            13px 30px;
+
+        font-size: 14px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .memories-header h1 {
+
+        font-size: 40px;
+    }
+
+
+    .memories-header p {
+
+        font-size: 12px;
+    }
+
+
+    .memory-card {
+
+        width: 185px;
+
+        height: 265px;
+    }
+
+
+    .photo {
+
+        height: 195px;
+    }
+
+
+    .caption {
+
+        font-size: 21px;
+    }
+
+
+    .memory-section::before {
+
+        width: 310px;
+
+        height: 310px;
+    }
+
+
+    .card-2 {
+
+        transform:
+            translateX(-55px) rotateZ(-5deg) scale(0.78);
+    }
+
+
+    .card-4 {
+
+        transform:
+            translateX(55px) rotateZ(5deg) scale(0.78);
+    }
+}

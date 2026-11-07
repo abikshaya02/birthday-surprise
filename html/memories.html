@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 35px 16px 50px;
+            overflow-x: hidden;
+            position: relative;
+            isolation: isolate;
+            background: radial-gradient(ellipse at center,
+                    #4b1022,
+                    #210711 55%,
+                    #090307);
+            color: #f9e8db;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        /* Romantic background glow */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 15% 20%,
+                    rgba(255, 75, 130, 0.22),
+                    transparent 30%),
+                radial-gradient(circle at 85% 35%,
+                    rgba(255, 190, 90, 0.15),
+                    transparent 28%),
+                radial-gradient(circle at 50% 85%,
+                    rgba(160, 30, 80, 0.25),
+                    transparent 38%);
+            animation: romanticGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes romanticGlow {
+            0% {
+                opacity: .55;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        header {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: #e9bd63;
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            color: #e7b75d;
+            font: normal clamp(42px, 7vw, 68px) 'Great Vibes', cursive;
+            text-shadow: 0 0 25px rgba(231, 183, 93, .2);
+        }
+
+        .subtitle {
+            color: #e9b0ae;
+            font-size: 12px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+        .collection {
+            width: min(100%, 1050px);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Scrapbook */
+        .scrapbook {
+            position: relative;
+            padding: 25px 8px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        /* One-row photo slider */
+        .photo-viewport {
+            width: 100%;
+            overflow: hidden;
+            padding: 12px 5px 20px;
+        }
+
+        .photo-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            width: 200%;
+            gap: 0;
+            align-items: center;
+            transform: translateX(0);
+            transition: transform 1s ease-in-out;
+        }
+
+        /* Each photo takes one-sixth of the slider width */
+        .polaroid {
+            position: relative;
+            flex: 0 0 calc(100% / 6);
+            min-width: 0;
+            margin: 0;
+            padding: 10px 10px 34px;
+            background: #fff4e4;
+            border: none;
+            border-radius: 2px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .32);
+            opacity: 1;
+            transition:
+                transform .5s ease,
+                box-shadow .4s ease;
+        }
+
+        .polaroid:nth-child(1),
+        .polaroid:nth-child(4) {
+            transform: rotate(-3deg);
+        }
+
+        .polaroid:nth-child(2),
+        .polaroid:nth-child(5) {
+            transform: translateY(-6px) rotate(2.5deg);
+        }
+
+        .polaroid:nth-child(3),
+        .polaroid:nth-child(6) {
+            transform: translateY(5px) rotate(-1.5deg);
+        }
+
+        .polaroid:hover {
+            z-index: 5;
+            transform: translateY(-8px) rotate(0deg) scale(1.02);
+            box-shadow: 0 20px 38px rgba(0, 0, 0, .4);
+        }
+
+        .polaroid img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            background: #ead7c9;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            left: 3px;
+            right: 3px;
+            bottom: 7px;
+            color: #76243a;
+            font: 19px 'Great Vibes', cursive;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Golden tape */
+        .tape {
+            position: absolute;
+            width: 60px;
+            height: 18px;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-5deg);
+            background: rgba(222, 190, 126, .78);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, .08);
+            z-index: 2;
+        }
+
+        .polaroid:nth-child(2) .tape,
+        .polaroid:nth-child(5) .tape {
+            transform: translateX(-50%) rotate(3deg);
+        }
+
+        .polaroid:nth-child(3) .tape,
+        .polaroid:nth-child(6) .tape {
+            transform: translateX(-50%) rotate(-3deg);
+        }
+
+        /* Collection information */
+        .collection-count {
+            color: #e9bd63;
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-top: 20px;
+        }
+
+        .collection-caption {
+            color: #f1c8c7;
+            font: 32px 'Great Vibes', cursive;
+            margin-top: 12px;
+            min-height: 42px;
+        }
+
+        .message {
+            max-width: 650px;
+            margin: 15px auto 0;
+            color: #e8c9c9;
+            font-size: 12px;
+            line-height: 2;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            margin-top: 28px;
+            padding: 12px 25px;
+            border: 1px solid #c99b4c;
+            border-radius: 30px;
+            color: #eac16e;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .back-button:hover {
+            background: #c99b4c;
+            color: #200711;
+            box-shadow: 0 0 22px rgba(201, 155, 76, .3);
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            color: #f05a83;
+            pointer-events: none;
+            z-index: 1;
+            text-shadow: 0 0 12px rgba(240, 90, 131, .55);
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .75;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating golden particles */
+        .bg-particle {
+            position: fixed;
+            top: 110%;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+            background: #ffd980;
+            box-shadow:
+                0 0 6px #ffd980,
+                0 0 14px rgba(255, 190, 80, .7);
+            animation: particleRise linear forwards;
+        }
+
+        @keyframes particleRise {
+            0% {
+                transform: translate3d(0, 0, 0) scale(.5);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .8;
+            }
+
+            85% {
+                opacity: .65;
+            }
+
+            100% {
+                transform: translate3d(35px, -120vh, 0) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Twinkling stars */
+        .bg-star {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            color: #ffe5a3;
+            text-shadow: 0 0 10px #e9bd63;
+            animation: starTwinkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes starTwinkle {
+            from {
+                opacity: .15;
+                transform: scale(.7) rotate(0deg);
+            }
+
+            to {
+                opacity: .9;
+                transform: scale(1.25) rotate(45deg);
+            }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 14px 40px;
+            }
+
+            .eyebrow {
+                letter-spacing: 3px;
+                font-size: 9px;
+            }
+
+            h1 {
+                font-size: clamp(38px, 11vw, 54px);
+            }
+
+            .scrapbook {
+                padding: 15px 2px;
+            }
+
+            .photo-viewport {
+                padding: 10px 3px 15px;
+            }
+
+            .polaroid {
+                padding: 5px 5px 25px;
+            }
+
+            .polaroid-caption {
+                font-size: clamp(10px, 3.2vw, 15px);
+                bottom: 5px;
+            }
+
+            .tape {
+                width: 35px;
+                height: 12px;
+                top: -6px;
+            }
+
+            .collection-caption {
+                font-size: 27px;
+            }
+
+            .message {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .polaroid {
+                padding: 4px 4px 23px;
+            }
+
+            .polaroid-caption {
+                font-size: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            body::after,
+            .polaroid,
+            .photo-grid,
+            .bg-particle,
+            .bg-star {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .heart {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p class="eyebrow">EVERY PICTURE TELLS OUR STORY</p>
+
+        <h1>Our Beautiful Memories</h1>
+
+        <p class="subtitle">
+            Little moments, beautiful memories, one special love. ❤️
+        </p>
+    </header>
+
+    <main class="collection">
+
+        <section class="scrapbook">
+
+            <!-- Photo viewport: hides the other three photos -->
+            <div class="photo-viewport">
+
+                <div class="photo-grid" id="photoGrid">
+
+                    <!-- FIRST THREE PHOTOS -->
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/01.jpeg" alt="Our first memory">
+                        <p class="polaroid-caption">My favorite person ❤️</p>
+                    </div>
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/02.jpeg" alt="A beautiful moment">
+                        <p class="polaroid-caption">Our little world ✨</p>
+                    </div>
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/03.jpeg" alt="A precious memory">
+                        <p class="polaroid-caption">Always you 💕</p>
+                    </div>
+
+                    <!-- NEXT THREE PHOTOS -->
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/04.jpeg" alt="Our special memory">
+                        <p class="polaroid-caption">Mr. Mine ❤️</p>
+                    </div>
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/05.jpeg" alt="A lovely moment">
+                        <p class="polaroid-caption">My dear love ✨</p>
+                    </div>
+
+                    <div class="polaroid">
+                        <span class="tape"></span>
+                        <img src="../image/06.jpeg" alt="Our beautiful memory">
+                        <p class="polaroid-caption">My handsome 💕</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <p class="collection-count" id="collectionCount">
+            MEMORY COLLECTION 01
+        </p>
+
+        <p class="collection-caption" id="collectionCaption">
+            Every moment with you is special ❤️
+        </p>
+
+        <p class="message">
+            If I could keep one thing forever, it would be the happiness
+            I feel when I'm with you. Every picture holds a little piece
+            of our story, and I hope we create a thousand more memories
+            together. ❤️
+        </p>
+
+    </main>
+
+    <a href="miracle.html" class="back-button">
+        Next : a little miracle called you
+    </a>
+
+    <script>
+
+        /* =====================================
+           THREE PHOTOS AT A TIME SLIDESHOW
+        ===================================== */
+
+        const grid = document.getElementById("photoGrid");
+
+        const collectionCount =
+            document.getElementById("collectionCount");
+
+        const collectionCaption =
+            document.getElementById("collectionCaption");
+
+        let showSecondGroup = false;
+
+        function changeCollection() {
+
+            showSecondGroup = !showSecondGroup;
+
+            if (showSecondGroup) {
+
+                // Show photos 4, 5 and 6
+                grid.style.transform = "translateX(-50%)";
+
+                collectionCount.textContent =
+                    "MEMORY COLLECTION 02";
+
+                collectionCaption.textContent =
+                    "You make my world more beautiful ✨";
+
+            } else {
+
+                // Show photos 1, 2 and 3
+                grid.style.transform = "translateX(0)";
+
+                collectionCount.textContent =
+                    "MEMORY COLLECTION 01";
+
+                collectionCaption.textContent =
+                    "Every moment with you is special ❤️";
+            }
+        }
+
+        // Change photos every 5 seconds
+        setInterval(changeCollection, 5000);
+
+
+        /* =====================================
+           REDUCED MOTION CHECK
+        ===================================== */
+
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+
+        /* =====================================
+           FLOATING HEARTS
+        ===================================== */
+
+        function createHeart() {
+
+            if (reducedMotion.matches) return;
+
+            const heart = document.createElement("span");
+
+            heart.className = "heart";
+
+            heart.textContent =
+                Math.random() > .5 ? "♥" : "♡";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (10 + Math.random() * 14) + "px";
+
+            heart.style.animationDuration =
+                (7 + Math.random() * 6) + "s";
+
+            document.body.appendChild(heart);
+
+            heart.addEventListener("animationend", () => {
+                heart.remove();
+            });
+        }
+
+        setInterval(createHeart, 900);
+
+
+        /* =====================================
+           FLOATING GOLDEN PARTICLES
+        ===================================== */
+
+        function createBackgroundParticle() {
+
+            if (reducedMotion.matches) return;
+
+            const particle = document.createElement("span");
+
+            particle.className = "bg-particle";
+
+            const size = 2 + Math.random() * 4;
+
+            particle.style.left =
+                Math.random() * 100 + "vw";
+
+            particle.style.width = size + "px";
+
+            particle.style.height = size + "px";
+
+            particle.style.animationDuration =
+                (8 + Math.random() * 8) + "s";
+
+            document.body.appendChild(particle);
+
+            particle.addEventListener("animationend", () => {
+                particle.remove();
+            });
+        }
+
+        setInterval(createBackgroundParticle, 350);
+
+
+        /* =====================================
+           TWINKLING GOLDEN STARS
+        ===================================== */
+
+        function createBackgroundStar() {
+
+            if (reducedMotion.matches) return;
+
+            const star = document.createElement("span");
+
+            star.className = "bg-star";
+
+            star.textContent = "✦";
+
+            star.style.left =
+                Math.random() * 96 + "vw";
+
+            star.style.top =
+                Math.random() * 95 + "vh";
+
+            star.style.fontSize =
+                (8 + Math.random() * 12) + "px";
+
+            star.style.animationDelay =
+                Math.random() * 2 + "s";
+
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 5000);
+        }
+
+        setInterval(createBackgroundStar, 700);
+
+    </script>
+
+</body>
+
+</html>
